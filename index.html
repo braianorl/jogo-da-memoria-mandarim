@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jogo da Memória em Mandarim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="memory-game">
+        <!-- Tela inicial com seleção de categoria e dificuldade -->
+        <div id="game-start" class="game-start">
+            <h1>记忆游戏</h1>
+            <p>Jogo da Memória em Mandarim</p>
+            
+            <div class="selection-container">
+                <h2>Escolha uma categoria</h2>
+                <div class="category-buttons">
+                    <button class="category-button" data-category="numeros">Números</button>
+                    <button class="category-button" data-category="animais">Animais</button>
+                    <button class="category-button" data-category="familia">Família</button>
+                    <button class="category-button" data-category="natureza">Natureza</button>
+                    <button class="category-button" data-category="basicos">Básicos</button>
+                    <button class="category-button" data-category="todos">Todos</button>
+                </div>
+                
+                <h2>Escolha a dificuldade</h2>
+                <div class="difficulty-buttons">
+                    <button class="difficulty-button" data-difficulty="easy">Fácil</button>
+                    <button class="difficulty-button" data-difficulty="normal">Normal</button>
+                    <button class="difficulty-button" data-difficulty="hard">Difícil</button>
+                </div>
+                
+                <button id="start-game-button" class="start-game-button">Iniciar Jogo</button>
+            </div>
+        </div>
+        
+        <!-- Tela do jogo -->
+        <div id="game-screen" class="game-screen hidden">
+            <div class="game-header">
+                <h1>记忆游戏</h1>
+                <p>Jogo da Memória em Mandarim</p>
+                
+                <div class="game-stats">
+                    <div class="stats-row">
+
+                        <div class="attempts-counter">
+                            <span>Tentativas: <span id="attempts">0</span></span>
+                        </div>
+
+                        <div class="timer-container">
+                            <span>Tempo: <span id="timer-display">00:00</span></span>
+                        </div>
+
+                        <div class="pairs-counter">
+                            <span>Pares: <span id="matched-pairs">0</span>/<span id="total-pairs">6</span></span>
+                        </div>
+
+                        <div class="score-container">
+                        <span>Pontuação: <span id="score-display">0</span></span>
+                        </div>
+                    </div>
+                                       
+                    <div class="controls-row">
+                        <div class="game-info">
+                            <span id="category-display">Categoria: Todos</span> | 
+                            <span id="difficulty-display">Dificuldade: Normal</span>
+                        </div>
+                        <button id="mute-button" class="mute-button" aria-label="Desativar som">
+                            🔊
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="victory-message" class="victory-message hidden">
+                <h2>Parabéns!</h2>
+                <p>Você encontrou todos os pares!</p>
+                <p>Bônus de tempo: <span id="final-time-bonus">0</span></p>
+                <p>Bônus de tentativa: <span id="final-speed-bonus">0</span></p>
+                <p>Pontuação final: <span id="final-score">0</span></p>
+                <button id="play-again-button" class="new-game-button">
+                    Jogar Novamente
+                </button>
+                <button id="menu-button" class="menu-button">
+                    Menu Principal
+                </button>
+            </div>
+            
+            <div class="container">
+            <div id="game-grid" class="game-grid">
+                <!-- Cards will be inserted here by JavaScript -->
+            </div>
+            </div>
+            
+            <div class="bottom-controls">
+                <button id="new-game-button" class="new-game-button">
+                    Novo Jogo
+                </button>
+                <button id="back-button" class="back-button">
+                    Menu Principal
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="pictograms.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,649 @@
+/* Variáveis CSS para tema e espaçamentos */
+:root {
+  /* Paleta de cores Duolingo-style conforme requisitos */
+  --color-green: #58CC02;
+  --color-blue: #1CB0F6;
+  --color-purple: #CE82FF;
+  --color-red: #FF4B4B;
+  --color-yellow: #FFC800;
+  --color-orange: #FF9600;
+  
+  /* Cores de fundo e texto para dark mode */
+  --color-background: #121212;
+  --color-surface: #1E1E1E;
+  --color-surface-light: #2A2A2A;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #BBBBBB;
+  --color-border: #333333;
+  
+  /* Tamanhos e espaçamentos - usando unidades mais flexíveis */
+  --border-radius: min(12px, 3vw);
+  --spacing-xs: min(4px, 1vw);
+  --spacing-sm: min(8px, 2vw);
+  --spacing-md: min(16px, 4vw);
+  --spacing-lg: min(24px, 6vw);
+  --spacing-xl: min(32px, 8vw);
+}
+
+/* Reset e estilos base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  /* Usar viewport dinâmico + fallback para Safari iOS */
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Removido height fixo para evitar espaço extra */
+  /* overflow: hidden; */
+  /* Previne zoom e scroll elástico no iOS */
+  touch-action: manipulation;
+  -webkit-text-size-adjust: none;
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: 'Nunito', 'Segoe UI', 'Roboto', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  display: flex;
+  flex-direction: column;
+  /* Removido: overflow: hidden; */
+  /* Padding para área segura do iPhone X */
+  padding-bottom: env(safe-area-inset-bottom);
+  /* Previnir scroll elástico do iOS */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Estilos do jogo */
+.memory-game {
+  min-height: 100dvh;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+/* Tela inicial */
+.game-start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: var(--spacing-md);
+  justify-content: center;
+}
+
+/* Container centralizado */
+.container {
+  flex: 1 1 auto;
+  width: 100%;
+  padding: var(--spacing-sm) 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-start h1 {
+  font-size: clamp(1.8rem, 6vw, 2.5rem);
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-green);
+}
+
+.game-start p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  margin-top: 0;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text-secondary);
+}
+
+.selection-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.selection-container h2 {
+  font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+  margin: var(--spacing-lg) 0 var(--spacing-md);
+  color: var(--color-blue);
+  text-align: center;
+}
+
+.category-buttons, .difficulty-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.category-button, .difficulty-button {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: 44px; /* Tamanho mínimo para touch no iOS */
+}
+
+.category-button:hover, .difficulty-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.category-button.selected, .difficulty-button.selected {
+  border-color: var(--color-green);
+  background-color: rgba(88, 204, 2, 0.2);
+}
+
+/* Cores específicas das categorias */
+.category-button[data-category="numeros"] { border-color: var(--color-blue); }
+.category-button[data-category="animais"] { border-color: var(--color-purple); }
+.category-button[data-category="familia"] { border-color: var(--color-red); }
+.category-button[data-category="natureza"] { border-color: var(--color-green); }
+.category-button[data-category="basicos"] { border-color: var(--color-yellow); }
+.category-button[data-category="todos"] { border-color: var(--color-orange); }
+
+.difficulty-button[data-difficulty="easy"] { border-color: var(--color-green); }
+.difficulty-button[data-difficulty="normal"] { border-color: var(--color-blue); }
+.difficulty-button[data-difficulty="hard"] { border-color: var(--color-red); }
+
+.start-game-button {
+  background-color: var(--color-green);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  margin-top: var(--spacing-xl);
+  width: 100%;
+  min-height: 48px; /* Tamanho mínimo para touch */
+}
+
+.start-game-button:hover {
+  background-color: #4CAF50;
+  transform: scale(1.05);
+}
+
+.start-game-button:disabled {
+  background-color: #555555;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Tela do jogo */
+.game-screen {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
+.game-header {
+  text-align: center;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.game-header h1 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-green);
+}
+
+.game-header p {
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  margin-top: 0;
+  color: var(--color-text-secondary);
+}
+
+.game-stats {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: var(--spacing-md);
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--spacing-sm);
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.timer-container, .pairs-counter, .attempts-counter, .score-container {
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  font-weight: bold;
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.timer-container { color: var(--color-blue); }
+.pairs-counter { color: var(--color-blue); display: none; }
+.attempts-counter { color: var(--color-purple); }
+.score-container { color: var(--color-green); }
+
+.controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: var(--spacing-sm);
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.game-info {
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  color: var(--color-text-secondary);
+  flex: 1;
+  text-align: left;
+}
+
+.mute-button {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.mute-button.muted {
+  background-color: var(--color-red);
+}
+
+.new-game-button, .back-button, .menu-button {
+  background-color: var(--color-green);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  min-height: 44px;
+}
+
+.new-game-button:hover, .back-button:hover, .menu-button:hover {
+  background-color: #4CAF50;
+  transform: scale(1.05);
+}
+
+.new-game-button:disabled, .back-button:disabled, .menu-button:disabled {
+  background-color: #555555;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.back-button, .menu-button {
+  background-color: var(--color-blue);
+}
+
+.back-button:hover, .menu-button:hover {
+  background-color: #0e9ad8;
+}
+
+/* Grid do jogo - usando unidades flexíveis */
+.game-grid {
+  display: grid;
+  gap: clamp(8px, 2vw, 16px);
+  width: 100%;
+  max-width: 100%;
+  align-content: center;
+}
+
+/* Grid para diferentes dificuldades */
+.game-grid.easy {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  
+}
+
+.game-grid.normal {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  
+}
+
+.game-grid.hard {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  
+}
+
+/* Estilos das cartas - tamanhos flexíveis */
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  perspective: 1000px;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  min-width: 0; /* Previne overflow */
+}
+
+.card.disabled {
+  cursor: default;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  border-radius: var(--border-radius);
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border: 2px solid var(--color-border);
+}
+
+.card-front {
+  background-color: var(--color-surface);
+}
+
+.card-back {
+  background-color: var(--color-surface);
+  transform: rotateY(180deg);
+}
+
+.card-back-content {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--color-text-secondary);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-sm);
+  width: 100%;
+  height: 100%;
+}
+
+.character {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: bold;
+  margin-bottom: var(--spacing-xs);
+  line-height: 1;
+}
+
+.pinyin {
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-blue);
+  line-height: 1.2;
+}
+
+.meaning {
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  color: var(--color-text-secondary);
+  line-height: 1.2;
+}
+
+/* Estilos para cartas pareadas */
+.card.matched .card-back {
+  background-color: rgba(88, 204, 2, 0.2);
+  border-color: var(--color-green);
+}
+
+.card.matched .character {
+  color: var(--color-green);
+}
+
+/* Mensagem de vitória */
+.victory-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-green);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  text-align: center;
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  animation: victory-appear 0.5s ease-out;
+  width: 90%;
+  max-width: 350px;
+}
+
+.victory-message h2 {
+  color: var(--color-green);
+  margin-top: 0;
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+}
+
+.victory-message p {
+  margin: var(--spacing-sm) 0;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+}
+
+.victory-message button {
+  margin-top: var(--spacing-md);
+  width: 100%;
+}
+
+.victory-message .menu-button {
+  margin-top: var(--spacing-sm);
+}
+
+/* Controles inferiores - CORRIGIDO para iPhone X */
+.bottom-controls {
+  position: sticky;
+  bottom: 0;
+  background-color: var(--color-background);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+  padding: var(--spacing-md);
+  flex-shrink: 0;
+  padding-bottom: calc(var(--spacing-md) + env(safe-area-inset-bottom));
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+@media (max-width: 480px) {
+  .bottom-controls {
+  position: sticky;
+  bottom: 0;
+  background-color: var(--color-background);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+  padding: var(--spacing-md);
+  flex-shrink: 0;
+  padding-bottom: calc(var(--spacing-md) + env(safe-area-inset-bottom));
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+}
+
+.bottom-controls button {
+  flex: 1;
+  margin: 0 var(--spacing-xs);
+}
+
+/* Animação de pontos */
+.points-animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-green);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: bold;
+  animation: points-fade 1.5s ease-out forwards;
+  z-index: 100;
+}
+
+@keyframes points-fade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -30%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -20%) scale(0.8);
+  }
+}
+
+/* Animação de sucesso ao encontrar um par */
+@keyframes success-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.card.matched .card-inner {
+  animation: success-pulse 0.5s ease-out;
+}
+
+@keyframes victory-appear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Utilitários */
+.hidden {
+  display: none;
+}
+
+/* Responsividade específica para iPhone X e similares */
+@media (max-width: 480px) {
+  .memory-game {
+  min-height: 100dvh;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+  
+  .game-grid {
+  display: grid;
+  gap: clamp(8px, 2vw, 16px);
+  width: 100%;
+  max-width: 100%;
+  align-content: center;
+}
+  
+  .stats-row {
+    /* flex-direction: column; */
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+  
+  .timer-container, .attempts-counter, .score-container {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .controls-row {
+    /* flex-direction: column; */
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .game-info {
+    text-align: left;
+    width: 100%;
+  }
+}
+
+/* Ajustes específicos para iPhone X em landscape */
+@media (max-width: 812px) and (orientation: landscape) {
+  .game-header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+  
+  .game-header p {
+    display: none; /* Oculta subtítulo em landscape */
+  }
+  
+  .game-stats {
+    margin-top: var(--spacing-sm);
+  }
+  
+  .stats-row {
+    margin-bottom: 0;
+  }
+}
+
+/* Prevenção de zoom no iOS */
+input, select, textarea, button {
+  font-size: 16px; /* Previne zoom automático no iOS */
+}
+
+/* Otimizações para Safari */
+@supports (-webkit-appearance: none) {
+  .card {
+    -webkit-transform: translateZ(0); /* Force hardware acceleration */
+    transform: translateZ(0);
+  }
+  
+  .card-inner {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+}
