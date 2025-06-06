@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ranking.css">
 </head>
 <body>
     <div class="memory-game">
@@ -35,6 +36,7 @@
                 </div>
                 
                 <button id="start-game-button" class="start-game-button">Iniciar Jogo</button>
+                <button id="view-ranking-button" class="ranking-button">Ver Ranking</button>
             </div>
         </div>
         
@@ -107,7 +109,18 @@
         </div>
     </div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <!-- Configuração do Firebase -->
+    <script src="firebase-config.js"></script>
+    
+    <!-- Scripts do jogo -->
     <script src="pictograms.js"></script>
     <script src="script.js"></script>
+    
+    <!-- Script do ranking -->
+    <script src="ranking.js"></script>
 </body>
 </html>
