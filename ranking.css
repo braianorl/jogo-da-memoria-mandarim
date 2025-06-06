@@ -1,0 +1,175 @@
+/* Estilos para o sistema de ranking */
+
+/* Modal de ranking */
+.ranking-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.ranking-content {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    border: 2px solid #4caf50;
+}
+
+.ranking-content h2 {
+    color: #4caf50;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+/* Tabela de ranking */
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.ranking-table th,
+.ranking-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+.ranking-table th {
+    background-color: #333;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.ranking-table tr:nth-child(even) {
+    background-color: #2a2a2a;
+}
+
+.ranking-table tr:hover {
+    background-color: #3a3a3a;
+}
+
+/* Destaque para as três primeiras posições */
+.ranking-table tr:nth-child(1) td:first-child {
+    color: gold;
+    font-weight: bold;
+}
+
+.ranking-table tr:nth-child(2) td:first-child {
+    color: silver;
+    font-weight: bold;
+}
+
+.ranking-table tr:nth-child(3) td:first-child {
+    color: #cd7f32; /* Bronze */
+    font-weight: bold;
+}
+
+/* Botões */
+.close-ranking-button,
+.ranking-button,
+.save-score-button,
+.skip-ranking-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.close-ranking-button:hover,
+.ranking-button:hover,
+.save-score-button:hover {
+    background-color: #45a049;
+}
+
+.skip-ranking-button {
+    background-color: #666;
+}
+
+.skip-ranking-button:hover {
+    background-color: #555;
+}
+
+/* Formulário de nickname */
+.nickname-form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.nickname-input-container {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+#nickname-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #4caf50;
+    border-radius: 5px 0 0 5px;
+    background-color: #333;
+    color: white;
+    width: 60%;
+    max-width: 200px;
+}
+
+.save-score-button {
+    border-radius: 0 5px 5px 0;
+    margin: 0;
+}
+
+/* Botão de ranking no menu principal */
+.ranking-button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #9c27b0;
+}
+
+.ranking-button:hover {
+    background-color: #7b1fa2;
+}
+
+/* Indicador de carregamento */
+.loading-spinner {
+    text-align: center;
+    padding: 20px;
+    color: #4caf50;
+    font-size: 18px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* Mensagem de erro */
+.error-message {
+    color: #ff5252;
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+}
