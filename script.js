@@ -247,8 +247,8 @@ function renderCards() {
                 </div>
                 <div class="card-back">
                     <div class="card-content">
-                        <div class="character">${card.pictogram.character}</div>
                         <div class="pinyin">${card.pictogram.pinyin}</div>
+                        <div class="character">${card.pictogram.character}</div>
                         <div class="meaning">${card.pictogram.meaning}</div>
                     </div>
                 </div>
